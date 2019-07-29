@@ -1,0 +1,12 @@
+module.exports = async (client, member) => {
+    member.send(client.config.welcomeMsg);
+
+    // Ignore test user.
+    if(member.user.id === "535958315230822422")
+        return;
+
+    client.channels.get(client.config.moderationID).send({embed: {
+        color: 1037917,
+        fields: [{name: "New user joined the Server", value: member.user.tag}]
+    }});
+}

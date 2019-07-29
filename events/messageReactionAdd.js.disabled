@@ -1,0 +1,4 @@
+module.exports = async (client, react, user) => {
+        if(react.message.id === client.config.roleMsg)
+            react.message.channel.send("<@" + user.id +">" + " reacted with " + react.emoji).then(message => message.delete(5000));
+}

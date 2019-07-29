@@ -1,0 +1,24 @@
+module.exports = async (client, oldMessage, newMessage) => {
+    const chn = client.channels.find(channel => channel.id === "551808050743476244");
+    
+    if (oldMessage.channel.id === "551492101305794561"){
+        chn.send(
+            {embed: {
+                color: 3447003,
+                title: oldMessage.author.username + "#" + oldMessage.author.discriminator + " - Campaign message updated",
+                fields: [{
+                    name: "**Previous**",
+                    value: oldMessage.content
+                },{
+                    name: "**New Message**",
+                    value: newMessage.content
+		},{
+                    name: "**Character Count**",
+                    value: newMessage.content.length.toString()	
+		}],
+                timestamp: new Date(),
+            }
+            }
+        );
+    }
+}
