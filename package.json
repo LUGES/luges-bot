@@ -5,17 +5,15 @@
   "main": "bot.js",
   "dependencies": {
     "better-sqlite-pool": "^0.2.2",
-    "cors": "2.8.5",
     "discord.js": "^11.5.1",
     "enmap": "^4.8.7",
-    "express": "^4.17.1",
-    "letter-count": "^2.8.9",
-    "moment": "^2.24.0"
+    "letter-count": "^2.8.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.1.0"
+  },
   "scripts": {
-    "start": "node bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bot.js"
   },
   "author": "Brent Oates",
   "license": "ISC"
