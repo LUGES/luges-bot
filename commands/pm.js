@@ -1,4 +1,4 @@
-export function run(client, message) {
+exports.run = (client, message) => {
     if (!client.execCheck(message) || message.channel.type === ("dm")) return;
 
     let mess = message.content.split(" ");
@@ -35,9 +35,9 @@ export function run(client, message) {
     } else
         message.channel.send("This is not a valid ID");
     return;
-}
+};
 
-export const help = {
+exports.help = {
     admin: true,
     name: process.env.prefix + "pm <@mention> <message>",
     description: "Makes the bot PM the message to the specified person."
