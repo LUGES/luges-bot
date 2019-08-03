@@ -1,8 +1,5 @@
-/*jshint esversion: 8 */
-
 exports.run = (client, message) => {
-    if(!message.member.roles.find(role => role.name == "President"))
-        return message.channel.send("User not authorised to start the purge.");
+    if (!client.execCheck(message) || message.channel.type === ("dm")) return;
 
     message.guild.fetchMembers().then(() => {
         let kickables = message.guild.members.filter(m => !m.roles.find(role => role.name == "Committee") && !m.roles.find(role => role.name == "New User [Testing]") && !m.user.bot);
@@ -19,7 +16,7 @@ exports.run = (client, message) => {
         collector.on("collect", message => {
             message.channel.send("Member purge confirmed! Sending messages then kicking users.");
             kickables.forEach(member => {
-                member.send("All users have been been kicked from the LUGES Discord to implement a new system!\nYou can rejoin via https://discord.gg/luges").then(() => member.kick);
+                member.send("All users have been been kicked from the LUGES Discord.\nYou can rejoin via https://discord.gg/luges").then(() => member.kick);
             });
             collector.stop();
         });
@@ -29,4 +26,10 @@ exports.run = (client, message) => {
                 message.channel.send("No confirmation, purge halted.");
         });
     });
+};
+
+exports.help = {
+    admin: true,
+    name: process.env.prefix + "purge",
+    description: "Kicks all non-committee and non-bot users from the Discord Server."
 };

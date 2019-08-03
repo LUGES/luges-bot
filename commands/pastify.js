@@ -1,12 +1,20 @@
 exports.run = (client, message) => {
     if (!client.execCheck(message) || message.channel.type === ("dm")) return;
 
+    let currentMemberRole = message.guild.roles.find(role => role.name === "Current Member");
+    let pastMemberRole = message.guild.roles.find(role => role.name === "Past Member");
+
+    if(currentMemberRole == undefined || pastMemberRole == undefined)
+        return (message.channel.send("Unable to locate the Member roles."));
+
+
     message.guild.fetchMembers().then(() => {
         let enrolled = message.guild.members.filter(m => m.roles.find(role => role.name == "Current Member"));
-
-
-        message.channel.send(`Total Members: ${enrolled.size}`);
-        message.channel.send(`Total users in the Discord: ${message.guild.memberCount}`);
+        enrolled.forEach(member => {
+            member.removeRole(currentMemberRole)
+                .then(member.addRole(pastMemberRole));
+            
+        });
     });
 
     if (message.channel.type != "dm")
