@@ -12,7 +12,7 @@ exports.run = (client, message) => {
                 color: 1037917,
                 title: "User requested the Member Role.",
                 footer: {text: message.author.id},
-                fields: [{name: "User", value: `<@${message.author.id}>`, inline: true}, {name: "Tag", value: `<@${message.author.tag}>`, inline: true}, {name: "Name Provided", value: usrName, inline : true}]
+                fields: [{name: "User", value: `<@${message.author.id}>`, inline: true}, {name: "Tag", value: message.author.tag, inline: true}, {name: "Name Provided", value: usrName, inline : true}]
             }});
         }
     } else
