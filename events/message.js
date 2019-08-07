@@ -21,8 +21,11 @@ module.exports = async (client, message) => {
     if((message.content.toLowerCase()).includes("bad bot"))
         message.react("😢");
 
-    if(message.channel.id == "605128989207429153" && !message.content.startsWith("/member"))
+    if(message.channel.id == "605128989207429153" && !message.content.startsWith("~member")){
+        message.author.send(`Only the ${process.env.prefix}member command can be used in this channel.`);
         message.delete();
+    }
+        
 
     if (!message.content.startsWith(process.env.prefix) || message.author.bot || message.content.startsWith(process.env.prefix + process.env.prefix)) return;
     

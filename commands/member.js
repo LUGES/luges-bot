@@ -6,6 +6,8 @@ exports.run = (client, message) => {
         if(!mess[1])
             message.author.send("Please provide your name so we can check our records.");
         else{
+            message.author.send("Access to the Member Role has been requested, someone should verify this for you over the next hour (Unless its late!)");
+
             mess.splice(0,1);
             let usrName = mess.join(" ");
             client.channels.get("605134841939230776").send({embed: {
