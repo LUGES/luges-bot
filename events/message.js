@@ -1,4 +1,3 @@
-//let shrek = require('../commands/someone.js');
 module.exports = async (client, message) => {
     if (message.content.includes("@someone") && !message.author.bot && message.channel.type != "dm")
     {
@@ -35,10 +34,7 @@ module.exports = async (client, message) => {
 
     const funct = client.commands.get(command);
 
-    if (!funct){
-        message.channel.send(`Command not found, you can use ${process.env.prefix}commands to see what I can do!`);
-        return;
-    }
+    if (!funct) return;
 
     funct.run(client, message, args);
 };
