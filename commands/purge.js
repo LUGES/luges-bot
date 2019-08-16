@@ -2,7 +2,7 @@ exports.run = (client, message) => {
     if (!client.execCheck(message) || message.channel.type === ("dm")) return;
 
     message.guild.fetchMembers().then(() => {
-        let kickables = message.guild.members.filter(m => !m.roles.find(role => role.name == "Committee") && !m.roles.find(role => role.name == "New User [Testing]") && !m.user.bot);
+        let kickables = message.guild.members.filter(m => !m.roles.find(role => role.id == process.env.execRole) && !m.user.bot);
 
         message.channel.send({embed: {
             color: 1037917,

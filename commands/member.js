@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-    if(message.channel.id == "605128989207429153" || message.channel.type === "dm"){
+    if(message.channel.id == process.env.getRolesChannelID || message.channel.type === "dm"){
         let mess = message.content.split(" ");
         if(!mess[1])
             message.author.send("Please provide your name so we can check our records.");
@@ -8,7 +8,7 @@ exports.run = (client, message) => {
 
             mess.splice(0,1);
             let usrName = mess.join(" ");
-            client.channels.get("605134841939230776").send({embed: {
+            client.channels.get(process.env.requestsChannelID).send({embed: {
                 color: 1037917,
                 title: "User requested the Member Role.",
                 footer: {text: message.author.id},
