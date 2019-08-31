@@ -24,8 +24,10 @@ exports.run = (client, message) => {
             let enrolled = message.guild.members.filter(m => m.roles.find(role => role.id === process.env.currentMemberRole));
             enrolled.forEach(member => {
                 member.removeRole(currentMemberRole)
-                    .then(member.addRole(pastMemberRole));
-                
+                    .then(() => {
+                        if(!member.roles.find(role => role.id === process.env.pastMemberRole))
+                            member.addRole(pastMemberRole);
+                    });
             });
         });
         collector.stop();
