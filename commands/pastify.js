@@ -27,6 +27,7 @@ exports.run = (client, message) => {
                     .then(() => {
                         if(!member.roles.find(role => role.id === process.env.pastMemberRole))
                             member.addRole(pastMemberRole);
+                        member.send("Your membership has expired so I've given you the Past Member role! You can now purchase Membership for next year from the SU Website: <http://lancastersu.co.uk/groups/gaming-and-esports-society> and get the Current Member role again by following the instructions in the #get-roles channel.");
                     });
             });
         });
